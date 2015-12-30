@@ -119,16 +119,16 @@ class eduRecordsViewController: UIViewController , UIPickerViewDataSource, UIPic
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "1to2segue") {
             
-            let UI1 = segue.destinationViewController as! eduSkillsViewController
+            let UI2 = segue.destinationViewController as! eduSkillsViewController
             
                 let gpa1 = bsgpatext.text! as String
-                UI1.gpa2 = gpa1
+                UI2.gpa2 = gpa1
 
                 let bsmajor1 = bsmajortext.text! as String
-                UI1.bsmajor2 = bsmajor1
+                UI2.bsmajor2 = bsmajor1
 
                 let gradyear1 = bsgradyeartext.text! as String
-                UI1.gradyear2 = gradyear1
+                UI2.gradyear2 = gradyear1
 
             }
         }
@@ -188,7 +188,9 @@ class eduRecordsViewController: UIViewController , UIPickerViewDataSource, UIPic
         bsmajortext.text = pickerDataSource[row]
         //bsmajortext.userInteractionEnabled = false
         // with the next line, you can save the real thing your user wanted to choose, not the kossher they later added on
-        print(pickerDataSource[row])
+        
+        
+        //print(pickerDataSource[row])
     }
 
    

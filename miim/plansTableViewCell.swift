@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableViewCell: UITableViewCell {
+class plansTableViewCell: UITableViewCell {
 
     @IBOutlet weak var planTitle: UILabel!
     @IBOutlet weak var planDate: UILabel!

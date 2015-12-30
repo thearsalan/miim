@@ -8,28 +8,18 @@
 
 import UIKit
 
-class TableViewController: UITableViewController {
-
-    
-    
-    @IBAction func newPlanButton() {
-        performSegueWithIdentifier("newplansegue", sender: self)
-        print("newplan")
-        
-    }
-
+class plansTableViewController: UITableViewController {
 
     let titleList = ["عنوان اول","عنوان دوم","عنوان سوم"]
     let datesList = ["تاریخ اول","تاریخ دوم","تاریخ سوم"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        let addButton: UIBarButtonItem = UIBarButtonItem(title:"دریافت برنامه جدید", style: UIBarButtonItemStyle.Plain, target:self, action: "newPlanButton")
-        addButton.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "IRANSans", size: 15)!], forState: UIControlState.Normal)
-        self.navigationItem.rightBarButtonItem = addButton
-        
+
+//        let addButton: UIBarButtonItem = UIBarButtonItem(title:"دریافت برنامه جدید", style: UIBarButtonItemStyle.Plain, target:self, action: "newPlanButton")
+//        addButton.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "IRANSans", size: 15)!], forState: UIControlState.Normal)
+//        self.navigationItem.rightBarButtonItem = addButton
+//        
 
         
         // Uncomment the following line to preserve selection between presentations
@@ -38,7 +28,10 @@ class TableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         //self.navigationItem.rightBarButtonItem = self.editButtonItem()
 
-
+        
+        
+        // removing extra lines between empty table cells
+        tableView.tableFooterView = UIView(frame: CGRectZero)
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,7 +53,7 @@ class TableViewController: UITableViewController {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: TableViewCell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! TableViewCell
+        let cell: plansTableViewCell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! plansTableViewCell
         
         cell.planTitle.text = titleList[indexPath.row]
         cell.planDate.text = datesList[indexPath.row]
@@ -74,7 +67,7 @@ class TableViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "mainToResults") {
             
-            let VC = segue.destinationViewController as! ResultViewController
+            let VC = segue.destinationViewController as! resultViewController
             
             if let indexpath = self.tableView.indexPathForSelectedRow {
                 let Title = titleList[indexpath.row] as String
@@ -83,6 +76,12 @@ class TableViewController: UITableViewController {
                 VC.sentDate = Date
             }
         }
+        
+//        if (segue.identifier == "counttotab") {
+//            let TVC = segue.destinationViewController as! tabBarController
+//            var planscountt = titleList.count
+//            TVC.planscount = planscountt
+//        }
 
     }
     
